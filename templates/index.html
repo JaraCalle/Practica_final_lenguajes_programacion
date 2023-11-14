@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/flask.svg') }}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Practica final Lenguajes de programación</title>
+</head>
+<body style="background-color: #1e1d1d">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="text-center p-4 rounded" style="background-color: aliceblue">
+        <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" height="60">
+        <h1 class="mb-4">Práctica final de Lenguajes de programación</h1>
+            <form action="/" method="POST">
+                <div class="mb-3">
+                    <input type="hidden" name="csrf_token" value="123">
+                    <input type="text" class="form-control" id="texto" name="texto" placeholder="Texto">
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">Modificar</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-primary alert-dismissible mt-4" role="alert">
+                        <p style="font-size: 1.5rem"><strong>{{ messages[0] }}</strong></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-secondary alert-dismissible mt-4" role="alert">
+                                <p style="font-size: 1.3rem">El número de palabras en español fueron: <strong>{{ messages[1] }}</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-secondary alert-dismissible mt-4" role="alert">
+                                <p style="font-size: 1.3rem">Los emojis fueron: <strong>{{ messages[2] }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>
